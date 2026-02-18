@@ -33,7 +33,9 @@
 
 # Rust — любимый язык программистов по опросам StackOverflow
 
-<img src="/images/slide4_img2.png" class="h-80 mx-auto" />
+<div class="flex justify-center items-center h-4/5">
+<img src="/images/slide4_img2.png" class="max-h-80 max-w-full object-contain" />
+</div>
 
 ---
 
