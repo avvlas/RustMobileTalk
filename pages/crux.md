@@ -1,10 +1,34 @@
-# Crux
+# Crux — зачем, если есть UniFFI?
+
+UniFFI решает только одну задачу — **генерация FFI биндингов**
+
+<v-clicks>
+
+- Нет архитектуры приложения — проектируй сам
+- Нет управления состоянием
+- Нет системы сайд-эффектов
+- Нет поддержки Web (WASM)
+- Нет стратегии тестирования shared-логики
+
+</v-clicks>
+
+<div v-click class="mt-4 text-lg font-bold text-center">
+
+UniFFI — это сантехника. Crux — это архитектура, которая эту сантехнику использует.
+
+</div>
+
+---
+
+# Crux — что это?
 
 <div class="grid grid-cols-2 gap-8 items-center h-full">
 <div>
 
-- Кроссплатформа на Rust
-- Rust Core, нативный UI
+- Кроссплатформенный фреймворк от **Red Badger**
+- Вся бизнес-логика — в Rust **Core**
+- UI — нативный: SwiftUI, Jetpack Compose, React
+- Web — first-class через WASM
 
 </div>
 <div>
@@ -16,14 +40,22 @@
 
 ---
 
-# Crux. Архитектура
+# Crux — Core + Shell
 
 <div class="grid grid-cols-2 gap-8 items-center">
 <div>
 
-- Архитектура вдохновлена TEA
-- Shell - отрисовывает UI, обрабатывает эффекты. Максимально легкий слой
-- Core - описывает логику
+Архитектура вдохновлена **TEA** (The Elm Architecture):
+
+- **Core** (Rust) — чистый, без сайд-эффектов
+  - `Model` — состояние
+  - `Event` — входные события
+  - `update()` — логика переходов
+  - `ViewModel` — данные для UI
+- **Shell** (Swift/Kotlin/TS) — тонкий слой
+  - Рисует UI
+  - Выполняет эффекты (HTTP, KV, ...)
+  - Передаёт события в Core
 
 </div>
 <div>
@@ -35,14 +67,96 @@
 
 ---
 
-# Crux. Биндинги
+# Crux — цикл обработки
+
+```
+User interaction
+    → Shell создаёт Event
+        → Core.process_event(event)
+            → update() мутирует Model, возвращает Vec<Request>
+                → Shell выполняет Request (HTTP, KV, Time, ...)
+                    → Shell вызывает handle_response(uuid, Response)
+                        → Core обрабатывает, может вернуть ещё Request'ы
+                            → Цикл завершается Render-запросом
+                                → Shell читает ViewModel, обновляет UI
+```
+
+<div class="mt-4">
+
+Каждый `Request` содержит **UUID** — Shell сопоставляет Response с оригинальным запросом
+
+</div>
+
+---
+
+# Crux — Capabilities (эффекты)
+
+Core **никогда** не выполняет I/O. Он только **описывает намерение** через Capabilities:
+
+| Capability | Крейт | Паттерн |
+|---|---|---|
+| `Render` | `crux_core` | Fire-and-forget |
+| `Http` | `crux_http` | Request → Response |
+| `KeyValue` | `crux_kv` | Request → Response |
+| `Time` | `crux_time` | Request → Response |
+| `Platform` | `crux_platform` | Request → Response |
+
+<v-click>
+
+Можно писать **кастомные** Capabilities — Bluetooth, камера, GPS, ...
+
+Shell реализует выполнение на каждой платформе
+
+</v-click>
+
+---
+
+# Crux — почему Core без сайд-эффектов?
+
+<v-clicks>
+
+- **WASM**: WebAssembly — песочница, прямой I/O невозможен
+- **Тестируемость**: Core детерминирован — тесты за **миллисекунды**, без эмуляторов
+- **Безопасность**: Core физически не может обратиться к сети/файлам — защита от supply-chain атак
+
+</v-clicks>
+
+<div v-click class="mt-4">
+
+```rust
+// Тест — просто "ещё один Shell"
+let app = AppTester::<App>::default();
+let mut model = Model::default();
+
+let update = app.update(Event::Increment, &mut model);
+
+assert_eq!(model.count, 1);
+assert_effect!(update, Effect::Render(_));
+```
+
+</div>
+
+---
+
+# Crux — биндинги и typegen
 
 <div class="grid grid-cols-2 gap-8 items-center">
 <div>
 
-- Использует UniFFI для генерации биндингов
-- Для генерации типов используется кастомный typegen
-- Для передачи объектов Rust↔Shell используется бинарная сериализация
+Двойной подход к FFI:
+
+1. **UniFFI / wasm-pack** — механизм вызова функций через FFI
+2. **Кастомный typegen (serde-generate)** — генерация типов данных
+
+<v-click>
+
+Почему не хватает одного UniFFI?
+- Сложные Rust `enum` с данными (tagged unions)
+- Глубоко вложенные generic-типы
+- Нужен единый подход для **Swift + Kotlin + TypeScript**
+- UniFFI вообще **не поддерживает Web**
+
+</v-click>
 
 </div>
 <div>
@@ -54,13 +168,40 @@
 
 ---
 
-# Crux. Kotlin
+# Crux — typegen в деталях
+
+Типы передаются через **бинарную сериализацию** (serde):
+
+```
+Rust Event/ViewModel  →  serde serialize  →  bytes  →  serde deserialize  →  Swift/Kotlin/TS
+```
+
+<v-click>
+
+`serde-generate` создаёт **зеркальные типы** на целевом языке:
+
+- Rust `enum` с payload → Swift `enum` с associated values
+- Rust `enum` с payload → Kotlin `sealed class`
+- Rust `enum` с payload → TypeScript discriminated union
+
+</v-click>
+
+<v-click>
+
+Изменил `Event` в Rust → сгенерированный Swift/Kotlin/TS **не компилируется** → ошибка найдена на этапе сборки
+
+</v-click>
+
+---
+
+# Crux — Kotlin/Native
 
 <div class="grid grid-cols-2 gap-8 items-center">
 <div>
 
-- В текущем typegen поддержан только Kotlin/Jvm
-- Мой PR с поддержкой Kotlin/Native
+- В текущем typegen поддержан только Kotlin/JVM
+- `serde-generate` генерирует JVM-специфичный код
+- Мой PR с поддержкой **Kotlin/Native** в serde-generate
 
 </div>
 <div>
@@ -72,7 +213,7 @@
 
 ---
 
-# Crux. Пример приложения
+# Crux — пример приложения
 
 https://github.com/redbadger/crux/pull/485
 
@@ -83,9 +224,26 @@ https://github.com/redbadger/crux/pull/485
 
 ---
 
-# Crux. Текущий стейт
+# Crux — текущий стейт
 
+<div class="grid grid-cols-2 gap-8">
+<div>
+
+**Плюсы:**
 - Активно развивается
 - Отзывчивое сообщество
-- Мало примеров real world приложений
-- Много бойлерплейта в инфраструктурном коде (для typegen, ffi)
+- Web — first-class citizen
+- Тесты core-логики за миллисекунды
+- Compile-time safety через typegen
+
+</div>
+<div>
+
+**Минусы:**
+- Pre-1.0, API может меняться
+- Мало примеров real-world приложений
+- Много бойлерплейта в инфраструктурном коде
+- `serde-generate` — не идеальное решение для typegen
+
+</div>
+</div>

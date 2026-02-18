@@ -8,8 +8,8 @@
                     class="cursor-pointer select-none transition-all duration-200 text-lg font-bold py-1"
                     :class="
                         focusedCategory === cat.id || focusedCategory === null
-                            ? 'text-black'
-                            : 'text-gray-300'
+                            ? ''
+                            : 'text-gray-300 dark:text-gray-600'
                     "
                     @click="selectCategory(cat.id)"
                 >
@@ -33,8 +33,8 @@
                             class="cursor-pointer select-none pl-4 py-0.5 text-base transition-colors duration-150"
                             :class="
                                 focusedItem === item.id
-                                    ? 'text-black font-semibold'
-                                    : 'text-gray-400'
+                                    ? 'font-semibold'
+                                    : 'text-gray-400 dark:text-gray-500'
                             "
                             @click.stop="selectItem(item.id)"
                         >
@@ -46,7 +46,7 @@
         </div>
 
         <!-- Divider -->
-        <div class="w-px bg-gray-200 shrink-0" />
+        <div class="w-px bg-gray-200 dark:bg-gray-700 shrink-0" />
 
         <!-- Right panel: detail content, fades on change -->
         <div class="flex-1 pl-8 flex flex-col justify-center">
@@ -270,12 +270,20 @@ const details = {
     },
     elementx: {
         text: "<b>ElementX</b> — мессенджер на протоколе Matrix.<br/>Matrix Rust SDK.",
-        images: ["/images/slide9_img5.png", "/images/slide9_img6.png", "/images/slide9_img7.png"],
+        images: [
+            "/images/slide9_img5.png",
+            "/images/slide9_img6.png",
+            "/images/slide9_img7.png",
+        ],
         imageClass: "h-36",
     },
     protonpass: {
         text: "<b>Proton Pass</b> — менеджер паролей (а также почта и т.д.).<br/>Common library на Rust.",
-        images: ["/images/slide10_img8.png", "/images/slide10_img9.png", "/images/slide10_img10.png"],
+        images: [
+            "/images/slide10_img8.png",
+            "/images/slide10_img9.png",
+            "/images/slide10_img10.png",
+        ],
         imageClass: "h-36",
     },
     firefox_mobile: {

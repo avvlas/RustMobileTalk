@@ -43,3 +43,24 @@
 # Где используется Rust
 
 <WhereRustUsed class="h-4/5" :initialCollapsed="true" />
+
+---
+
+# Мотивация - Rust в мобильных приложениях
+
+- **Нативные библиотеки** — криптография, сетевые протоколы, кодеки, парсеры
+- **Производительность** — hot path без GC-пауз
+- **Безопасность памяти** 
+- **Переиспользование логики** между платформами 
+
+---
+
+# Rust vs C++
+
+| | **C/C++** | **Rust** |
+|---|---|---|
+| Modern Language | ⚠️ | ✅ |
+| Tooling | CMake, Makefiles | Cargo ✅ |
+| iOS/Android | NDK + bridging | UniFFI ✅ |
+| Memory safety | ⚠️ | Компилятор ✅ |
+| Thread safety | ⚠️ | Borrow checker ✅ |

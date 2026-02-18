@@ -111,37 +111,12 @@ Borrow checker **гарантирует** отсутствие data races на �
 
 ---
 
-# Rust vs Swift/Kotlin — безопасность на этапе компиляции
+# Rust vs Swift/Kotlin
 
-<div class="grid grid-cols-3 gap-4">
-<div>
-
-**Проблема**
-- Null pointer
-- Data races
-- Use after free
-- Buffer overflow
-- Memory Leak
-
-</div>
-<div>
-
-**Swift / Kotlin**
-- Optional / Nullable ✅
-- Runtime проверки ⚠️
-- ARC / GC ✅
-- Runtime проверки ⚠️
-- ARC / GC ✅ (weak ref)
-
-</div>
-<div>
-
-**Rust**
-- Option\<T\> ✅
-- Borrow checker ✅
-- Ownership ✅
-- Компилятор ✅
-- Ownership ✅
-
-</div>
-</div>
+| **Проблема** | **Swift** | **Kotlin** | **Rust** |
+|---|---|---|---|
+| Null pointer | Optional ✅ | Nullable ✅ | Option\<T\> ✅ |
+| Use after free | ARC ✅ | GC ✅ | Ownership ✅ |
+| Memory Leak | ⚠️ | ⚠️ | Ownership ✅ |
+| Data races | ⚠️ | ⚠️ | Borrow checker ✅ |
+| Buffer overflow | ⚠️ | ⚠️ | Компилятор ✅ |
