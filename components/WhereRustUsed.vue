@@ -55,43 +55,92 @@
                     v-if="currentDetail"
                     :key="focusedItem"
                     :class="
-                        currentDetail.image_position === 'left' || currentDetail.image_position === 'right'
-                            ? 'flex items-center gap-6'
-                            : 'flex flex-col'
+                        currentDetail.images
+                            ? 'flex items-center justify-center'
+                            : currentDetail.image_position === 'left' ||
+                                currentDetail.image_position === 'right'
+                              ? 'flex items-center gap-6'
+                              : 'flex flex-col'
                     "
                     :style="
+                        !currentDetail.images &&
                         currentDetail.image_position === 'left'
                             ? 'flex-direction: row-reverse'
-                            : currentDetail.image_position === 'right'
-                            ? 'flex-direction: row'
-                            : ''
+                            : !currentDetail.images &&
+                                currentDetail.image_position === 'right'
+                              ? 'flex-direction: row'
+                              : ''
                     "
                 >
-                    <img
-                        v-if="currentDetail.image && currentDetail.image_position === 'top'"
-                        :src="currentDetail.image"
-                        :class="['object-contain mx-auto mb-6', currentDetail.imageClass || 'h-36']"
-                    />
-                    <p
-                        class="text-base leading-relaxed"
-                        :class="
-                            currentDetail.image_position === 'left' || currentDetail.image_position === 'right'
-                                ? 'flex-1'
-                                : currentDetail.image_position === 'bottom' || !currentDetail.image_position
-                                ? 'mb-6'
-                                : ''
-                        "
-                        v-html="currentDetail.text"
-                    />
-                    <img
-                        v-if="currentDetail.image && currentDetail.image_position !== 'top'"
-                        :src="currentDetail.image"
-                        :class="[
-                            'object-contain',
-                            currentDetail.image_position === 'left' || currentDetail.image_position === 'right' ? '' : 'mx-auto',
-                            currentDetail.imageClass || 'h-36',
-                        ]"
-                    />
+                    <template v-if="currentDetail.images">
+                        <div class="flex flex-col items-center gap-4">
+                            <img
+                                :src="currentDetail.images[0]"
+                                :class="[
+                                    'object-contain',
+                                    currentDetail.imageClass || 'h-36',
+                                ]"
+                            />
+                            <div class="flex gap-8">
+                                <img
+                                    :src="currentDetail.images[1]"
+                                    :class="[
+                                        'object-contain',
+                                        currentDetail.imageClass || 'h-36',
+                                    ]"
+                                />
+                                <img
+                                    :src="currentDetail.images[2]"
+                                    :class="[
+                                        'object-contain',
+                                        currentDetail.imageClass || 'h-36',
+                                    ]"
+                                />
+                            </div>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <img
+                            v-if="
+                                currentDetail.image &&
+                                (currentDetail.image_position === 'top' ||
+                                    !currentDetail.image_position)
+                            "
+                            :src="currentDetail.image"
+                            :class="[
+                                'object-contain mx-auto mb-6',
+                                currentDetail.imageClass || 'h-36',
+                            ]"
+                        />
+                        <p
+                            class="text-base leading-relaxed"
+                            :class="
+                                currentDetail.image_position === 'left' ||
+                                currentDetail.image_position === 'right'
+                                    ? 'flex-1'
+                                    : currentDetail.image_position === 'bottom'
+                                      ? 'mb-6'
+                                      : ''
+                            "
+                            v-html="currentDetail.text"
+                        />
+                        <img
+                            v-if="
+                                currentDetail.image &&
+                                currentDetail.image_position !== 'top' &&
+                                currentDetail.image_position
+                            "
+                            :src="currentDetail.image"
+                            :class="[
+                                'object-contain',
+                                currentDetail.image_position === 'left' ||
+                                currentDetail.image_position === 'right'
+                                    ? ''
+                                    : 'mx-auto',
+                                currentDetail.imageClass || 'h-36',
+                            ]"
+                        />
+                    </template>
                 </div>
             </Transition>
         </div>
@@ -164,27 +213,35 @@ const details = {
     linux: {
         text: "<b>In December 2025 it was decided to promote Rust from experimental to a core part of the kernel.</b><br/><br/><b>This expands the core languages in the Linux kernel to C, assembly and Rust.</b>",
         image: "/images/slide6_img3.png",
+        image_position: "top",
+        imageClass: "h-36",
     },
     android: {
-        text: '<b>In Android 13, about 21% of all new native code is in Rust.</b><br/><b>1.5 million total lines of Rust code in AOSP</b><br/><br/><i>"A 1000x reduction in memory safety vulnerability density compared to Android\'s C and C++ code."</i><br/><br/><i>"With Rust changes having a 4x lower rollback rate and spending 25% less time in code review"</i>',
+        text: '<b>In Android 13, about 21% of all new native code is in Rust.</b><br/><b>1.5 million total lines of Rust code in AOSP</b><br/><br/><i>"A 1000x reduction in memory safety vulnerability density compared to Android\'s C and C++ code.<br/>With Rust changes having a 4x lower rollback rate and spending 25% less time in code review"</i>',
         image: "/images/android_logo.png",
+        image_position: "top",
+        imageClass: "h-24",
     },
     embedded: {
-        text: "<b>Rust is increasingly used in embedded systems</b> due to its zero-cost abstractions, memory safety without a runtime, and strong type system — making it ideal for microcontrollers and real-time systems.",
+        text: null,
         image: "/images/rust_embedded.webp",
-        image_position: "right",
+        image_position: "top",
+        imageClass: "h-56",
     },
     codex: {
         text: "<b>OpenAI Codex CLI</b> is built with Rust, providing a fast and safe command-line interface for AI-powered code generation.",
-        image: null,
+        image: "/images/codex.svg",
+        imageClass: "h-48",
     },
     turborepo: {
         text: "<b>Turborepo</b> rewrote its build system engine in Rust for dramatically improved performance and reliability in monorepo builds.",
-        image: null,
+        image: "/images/turborepo.svg",
+        imageClass: "h-48",
     },
     ripgrep: {
-        text: "<b>Ripgrep, fd, bat</b> and many other modern CLI tools are written in Rust — offering significant speed improvements and memory safety over their C counterparts.",
-        image: null,
+        text: null,
+        images: ["/images/ripgrep.svg", "/images/fd.svg", "/images/bat.svg"],
+        imageClass: "h-36",
     },
     tauri: {
         text: "<b>Tauri</b> is a framework for building tiny, fast desktop apps using web frontends with a Rust backend — a lightweight alternative to Electron.",

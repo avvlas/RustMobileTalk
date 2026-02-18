@@ -36,7 +36,7 @@ layout: section
 </div>
 <div>
 
-<img src="/images/slide14_img13.png" class="h-60 mx-auto" />
+<img src="/images/slide14_img13.png" class="mx-auto" />
 
 </div>
 </div>
