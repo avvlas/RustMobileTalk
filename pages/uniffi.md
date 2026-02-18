@@ -45,13 +45,13 @@ layout: section
 
 # UniFFI Swift
 
-<img src="/images/slide15_img14.png" class="h-90 mx-auto" />
+<img src="/images/slide15_img14.png" class=" mx-auto" />
 
 ---
 
 # UniFFI Kotlin
 
-<img src="/images/slide16_img15.png" class="h-90 mx-auto" />
+<img src="/images/slide16_img15.png" class="mx-auto" />
 
 ---
 

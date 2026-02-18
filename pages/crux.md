@@ -1,6 +1,6 @@
 # Crux
 
-<div class="grid grid-cols-2 gap-8 items-center">
+<div class="grid grid-cols-2 gap-8 items-center h-full">
 <div>
 
 - Кроссплатформа на Rust
@@ -9,7 +9,7 @@
 </div>
 <div>
 
-<img src="/images/slide21_img16.png" class="h-60 mx-auto" />
+<img src="/images/slide21_img16.png" class="scale-150" />
 
 </div>
 </div>
@@ -65,7 +65,7 @@
 </div>
 <div>
 
-<img src="/images/slide24_img19.png" class="h-60 mx-auto" />
+<img src="/images/slide24_img19.png" class="" />
 
 </div>
 </div>

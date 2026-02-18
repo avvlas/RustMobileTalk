@@ -193,14 +193,17 @@ const categories = [
         id: "desktop",
         label: "Desktop & Web Apps",
         items: [
-            { id: "tauri", label: "Tauri" },
+            { id: "opencode", label: "OpenCode" },
             { id: "dioxus", label: "Dioxus" },
         ],
     },
     {
         id: "blockchain",
-        label: "Blockchain",
-        items: [{ id: "solana", label: "Solana" }],
+        label: "Blockchain & Crypto",
+        items: [
+            { id: "fuel", label: "Fuel" },
+            { id: "solana", label: "Solana" },
+        ],
     },
     {
         id: "mobile",
@@ -243,17 +246,23 @@ const details = {
         images: ["/images/ripgrep.svg", "/images/fd.svg", "/images/bat.svg"],
         imageClass: "h-36",
     },
-    tauri: {
-        text: "<b>Tauri</b> is a framework for building tiny, fast desktop apps using web frontends with a Rust backend — a lightweight alternative to Electron.",
-        image: null,
+    opencode: {
+        text: null,
+        image: "images/opencode.png",
+        imageClass: "scale-100",
     },
     dioxus: {
-        text: "<b>Dioxus</b> is a Rust-native UI library inspired by React. It targets web, desktop, and mobile from a single codebase.",
+        text: "<b>Tauri</b> </br></br> <b>Dioxus</b>.",
         image: null,
+    },
+    fuel: {
+        image: "/images/fuel-core.svg",
+        imageClass: "scale-90",
     },
     solana: {
         text: "<b>Solana</b> is one of the fastest blockchain platforms, and its entire runtime and smart contract SDK are written in Rust.",
-        image: null,
+        image: "/images/solana.svg",
+        imageClass: "scale-90",
     },
 };
 
