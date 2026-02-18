@@ -24,10 +24,6 @@ src: ./pages/rust-intro.md
 ---
 
 ---
-src: ./pages/mobile-apps.md
----
-
----
 src: ./pages/ffi-intro.md
 ---
 

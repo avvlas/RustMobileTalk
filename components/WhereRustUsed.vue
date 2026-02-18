@@ -208,7 +208,11 @@ const categories = [
     {
         id: "mobile",
         label: "Mobile Development",
-        items: [],
+        items: [
+            { id: "elementx", label: "ElementX" },
+            { id: "protonpass", label: "Proton Pass" },
+            { id: "firefox_mobile", label: "Firefox Mobile" },
+        ],
     },
 ];
 
@@ -263,6 +267,22 @@ const details = {
         text: "<b>Solana</b> is one of the fastest blockchain platforms, and its entire runtime and smart contract SDK are written in Rust.",
         image: "/images/solana.svg",
         imageClass: "scale-90",
+    },
+    elementx: {
+        text: "<b>ElementX</b> — мессенджер на протоколе Matrix.<br/>Matrix Rust SDK.",
+        images: ["/images/slide9_img5.png", "/images/slide9_img6.png", "/images/slide9_img7.png"],
+        imageClass: "h-36",
+    },
+    protonpass: {
+        text: "<b>Proton Pass</b> — менеджер паролей (а также почта и т.д.).<br/>Common library на Rust.",
+        images: ["/images/slide10_img8.png", "/images/slide10_img9.png", "/images/slide10_img10.png"],
+        imageClass: "h-36",
+    },
+    firefox_mobile: {
+        text: "<b>Firefox Mobile</b> — SDK на Rust.<br/>Mozilla — компания, в которой появился Rust.",
+        image: "/images/slide11_img11.png",
+        image_position: "right",
+        imageClass: "h-56",
     },
 };
 
