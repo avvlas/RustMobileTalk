@@ -28,6 +28,10 @@ src: ./pages/mobile-apps.md
 ---
 
 ---
+src: ./pages/ffi-intro.md
+---
+
+---
 src: ./pages/uniffi.md
 ---
 

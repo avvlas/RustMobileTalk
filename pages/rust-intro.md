@@ -3,18 +3,15 @@ layout: section
 ---
 
 # Введение в Rust
-## Ключевые концепции для мобильных разработчиков
 
 ---
 
-# Синтаксис Rust — знакомые концепции
-
-Если вы знаете Swift или Kotlin — вы уже знаете часть Rust
+# Синтаксис Rust
 
 <div class="grid grid-cols-2 gap-4">
 <div>
 
-```rust
+```rust {all|1-3|5-9|11-19|all}
 // Переменные и типы
 let name: &str = "Rust";
 let mut count: i32 = 0;
@@ -35,28 +32,6 @@ match result {
     }
 }
 ```
-
-</div>
-<div>
-
-```swift
-// Swift для сравнения
-let name: String = "Swift"
-var count: Int = 0
-
-enum NetworkResult {
-    case success(String)
-    case error(code: Int, message: String)
-}
-
-switch result {
-case .success(let data):
-    print("Данные: \(data)")
-case .error(let code, _):
-    print("Ошибка: \(code)")
-}
-```
-
 </div>
 </div>
 
@@ -87,33 +62,11 @@ fn load<T: ApiService>(service: &T) {
 ```
 
 </div>
-<div>
-
-```kotlin
-// Kotlin для сравнения
-interface ApiService {
-    fun fetch(url: String): Result<String>
-}
-
-class HttpClient : ApiService {
-    override fun fetch(url: String): Result<String> {
-        // реализация
-        return Result.success("response")
-    }
-}
-
-// Generics с ограничениями
-fun <T : ApiService> load(service: T) {
-    val result = service.fetch("/api/data")
-}
-```
-
-</div>
 </div>
 
 ---
 
-# Ownership — уникальная черта Rust
+# Rust - Ownership 
 
 У каждого значения ровно один владелец.  
 
@@ -127,7 +80,7 @@ println!("{:?}", data);     // ❌ ОШИБКА КОМПИЛЯЦИИ!
 println!("{:?}", data2);    // ✅ ОК — `data2` владелец
 ```
 
-Компилятор точно знает, когда нужно освободить память — без GC и без ручного управления памятью
+Компилятор точно знает, когда нужно освободить память — без GC и без ручного управления
 
 ---
 
@@ -135,7 +88,7 @@ println!("{:?}", data2);    // ✅ ОК — `data2` владелец
 
 Можно не передавать владение значением, а **заимствовать** (`&`)
 
-```rust {all|1-4|6-9|11-14|all}
+```rust {all|1-3|5-7|9-14|all}
 fn print_len(data: &Vec<i32>) {         // заимствование 
     println!("Длина: {}", data.len());
 }                                       // заимствование заканчивается
