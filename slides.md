@@ -20,6 +20,10 @@ src: ./pages/intro.md
 ---
 
 ---
+src: ./pages/rust-intro.md
+---
+
+---
 src: ./pages/mobile-apps.md
 ---
 
