@@ -1,5 +1,5 @@
 ---
-theme: seriph
+theme: default
 background: https://cover.sli.dev
 title: Мобильная Разработка на Rust
 class: text-center

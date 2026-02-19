@@ -1,5 +1,3 @@
-
-
 # UniFFI
 
 <div class="grid grid-cols-2 gap-8 items-center">
