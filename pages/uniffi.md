@@ -121,68 +121,6 @@ val greeting = hello("World")     // "Hello, world!"
 
 ---
 
-# UniFFI — поддерживаемые типы
-
-<div class="grid grid-cols-2 gap-8">
-<div>
-
-**Примитивы и коллекции:**
-- `i8`–`i64`, `u8`–`u64`, `f32`, `f64`
-- `bool`, `String`
-- `Vec<T>`, `HashMap<K, V>`
-- `Option<T>`
-
-**Сложные типы:**
-- `enum` (в т.ч. с данными)
-- `struct` (record)
-- `trait` (интерфейсы)
-
-</div>
-<div>
-
-**Особые типы:**
-- `Result<T, E>` → exceptions
-- `Arc<dyn Trait>` → объекты с интерфейсами
-- `Bytes` (`Vec<u8>`) → нативные байты
-- Callback-интерфейсы (вызов из Rust → Swift/Kotlin)
-- `Duration`, `SystemTime`
-
-</div>
-</div>
-
----
-
-# UniFFI — объекты (Arc)
-
-```rust
-use std::sync::{Arc, Mutex};
-
-#[derive(uniffi::Object)]
-pub struct Counter {
-    value: Mutex<i64>,
-}
-
-#[uniffi::export]
-impl Counter {
-    #[uniffi::constructor]
-    fn new(initial: i64) -> Arc<Self> {
-        Arc::new(Self { value: Mutex::new(initial) })
-    }
-
-    fn increment(&self) -> i64 {
-        let mut val = self.value.lock().unwrap();
-        *val += 1;
-        *val
-    }
-
-    fn get_value(&self) -> i64 {
-        *self.value.lock().unwrap()
-    }
-}
-```
-
----
-
 # UniFFI — объекты в Swift / Kotlin
 
 <div class="grid grid-cols-2 gap-4">
@@ -267,11 +205,7 @@ pub trait Logger {
 }
 
 #[uniffi::export]
-fn do_work(logger: Box<dyn Logger>) {
-    logger.log("INFO".into(), "Начинаю работу...".into());
-    // ... выполняем работу ...
-    logger.log("INFO".into(), "Готово!".into());
-}
+fn do_work(logger: Box<dyn Logger>) { ... }
 ```
 
 ```swift
@@ -288,15 +222,66 @@ doWork(logger: SwiftLogger())
 
 ---
 
+# UniFFI — custom types
 
+Маппинг кастомных типов на нативные типы платформ:
 
-# UniFFI — минусы
+```rust {all|1|2|3-6|7|all}
+uniffi::custom_type!(UtcDateTime, i64, {
+    remote,
+    try_lift: |val| {
+        DateTime::<Utc>::from_timestamp_millis(val)
+            .ok_or(anyhow!("Timestamp {val} out of range"))
+    },
+    lower: |obj| obj.timestamp_millis(),
+});
+```
+
+```toml {all|1-5|7-11|all}
+# Swift: UtcDateTime → Date
+[bindings.swift.custom_types.UtcDateTime]
+type_name = "Date"
+into_custom = "Date(timeIntervalSince1970: Double({}) / 1000.0)"
+from_custom = "Int64({}.timeIntervalSince1970 * 1000)"
+
+# Kotlin: UtcDateTime → java.util.Date
+[bindings.kotlin.custom_types.UtcDateTime]
+type_name = "java.util.Date"
+into_custom = "java.util.Date({})"
+from_custom = "{}.time"
+```
+
+---
+
+# UniFFI — выводы
+
+<div class="grid grid-cols-2 gap-8">
+<div>
+
+**Плюсы:**
 
 <v-clicks>
 
-- **Нет generics** — нельзя экспортировать `fn foo<T>(x: T)`, нужно конкретизировать типы
-- **Нет интеграции с GC JVM** — в Kotlin нужно явно вызывать `.destroy()` или `.use {}`
-- **Overhead от сериализации** — данные копируются через FFI-границу
-- **Время компиляции** — кодогенерация добавляет время к билду
+- Простая интеграция — минимум boilerplate
+- Поддержка async/await из коробки
+- Callback-интерфейсы для вызова платформенного кода
+- Поддержка объектов, enum, ошибок
 
 </v-clicks>
+
+</div>
+<div>
+
+**Минусы:**
+
+<v-clicks>
+
+- Нет generics — нужно конкретизировать типы
+- Нет интеграции с GC JVM — нужен `.destroy()` / `.use {}`
+- Overhead от сериализации через FFI-границу
+- Ручная поддержка для сложных типов данных
+
+</v-clicks>
+
+</div>
+</div>

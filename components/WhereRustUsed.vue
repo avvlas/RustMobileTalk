@@ -74,29 +74,42 @@
                 >
                     <template v-if="currentDetail.images">
                         <div class="flex flex-col items-center gap-4">
-                            <img
-                                :src="currentDetail.images[0]"
-                                :class="[
-                                    'object-contain',
-                                    currentDetail.imageClass || 'h-36',
-                                ]"
-                            />
-                            <div class="flex gap-8">
+                            <template v-if="currentDetail.images.length === 3">
                                 <img
-                                    :src="currentDetail.images[1]"
+                                    :src="currentDetail.images[0]"
                                     :class="[
                                         'object-contain',
                                         currentDetail.imageClass || 'h-36',
                                     ]"
                                 />
+                                <div class="flex gap-8">
+                                    <img
+                                        :src="currentDetail.images[1]"
+                                        :class="[
+                                            'object-contain',
+                                            currentDetail.imageClass || 'h-36',
+                                        ]"
+                                    />
+                                    <img
+                                        :src="currentDetail.images[2]"
+                                        :class="[
+                                            'object-contain',
+                                            currentDetail.imageClass || 'h-36',
+                                        ]"
+                                    />
+                                </div>
+                            </template>
+                            <template v-else>
                                 <img
-                                    :src="currentDetail.images[2]"
+                                    v-for="(imgSrc, idx) in currentDetail.images"
+                                    :key="idx"
+                                    :src="imgSrc"
                                     :class="[
                                         'object-contain',
                                         currentDetail.imageClass || 'h-36',
                                     ]"
                                 />
-                            </div>
+                            </template>
                         </div>
                     </template>
                     <template v-else>
@@ -256,8 +269,9 @@ const details = {
         imageClass: "scale-100",
     },
     dioxus: {
-        text: "<b>Tauri</b> </br></br> <b>Dioxus</b>.",
-        image: null,
+        text: null,
+        images: ["/images/tauri_social.png", "/images/dioxus_social.png"],
+        imageClass: "h-44",
     },
     fuel: {
         image: "/images/fuel-core.svg",

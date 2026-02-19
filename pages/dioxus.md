@@ -8,19 +8,10 @@ layout: section
 
 # А что, если хочется и UI на Rust?
 
-Подходы Crux и UniFFI: **логика** на Rust, **UI** — нативный (SwiftUI, Compose, React)
-
-<v-click>
-
-Но что если хочется **всё** на Rust — включая UI?
-
-</v-click>
-
 <v-clicks>
 
-- Полностью единая кодовая база — один `main.rs` на все платформы
-- Не нужны Swift/Kotlin-разработчики для UI
-- Web, Desktop, Mobile — из одного проекта
+- Подходы Crux и UniFFI: **логика** на Rust, **UI** — нативный (SwiftUI, Compose, React)
+- Но что если хочется **всё** на Rust — включая UI?
 
 </v-clicks>
 
@@ -46,16 +37,19 @@ layout: section
 </div>
 <div>
 
-<img src="/images/slide27_img22.png" class="h-50" />
+<img src="/images/slide27_img22.png" class="h-52" />
 
 </div>
 </div>
 
-<img src="/images/slide28_img23.png" class="h-40 mx-auto mt-4" />
+<img src="/images/slide28_img23.png" class="h-52 mx-auto mt-4" />
 
 ---
 
 # Dioxus — Пример
+
+<div class = "grid grid-cols-2 gap-8">
+<div>
 
 ```rust {all|3-5|7-15|all}
 use dioxus::prelude::*;
@@ -75,75 +69,12 @@ fn App() -> Element {
 }
 ```
 
-<div class="mt-2 text-center">
-
-Этот код  запускается на Web, Desktop, iOS и Android
-
 </div>
 
----
-
-# Dioxus — архитектура
-
-<div class="grid grid-cols-2 gap-8">
 <div>
-
-**Компонентная модель:**
-- Компоненты — обычные Rust-функции
-- `#[component]` + `rsx!{}` макрос
-- Параметры функции = пропсы
-
-**Состояние (Signals):**
-- `use_signal(|| value)` — реактивный сигнал
-- Fine-grained: перерисовывается **только** читающий компонент
-- Автоматический tracking зависимостей
-
-</div>
-<div>
-
-**Рендеринг:**
-
-```
-┌─────────────┐
-│  Компоненты │  Rust-функции
-│  + RSX      │  возвращают Element
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│ Virtual DOM │  Diff-движок
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│  Renderer   │  Подключаемый
-│  (pluggable)│
-└─────────────┘
-  WebView │ WGPU │ WASM │ SSR
-```
-
-</div>
-</div>
-
----
-
-# Dioxus — мобилки
-
-<div class="grid grid-cols-2 gap-8">
-<div>
-
-**Текущий подход (0.6):**
-- На мобилках рендерится в **WebView**
-- iOS — WKWebView, Android — Android WebView
-- VirtualDom → HTML/CSS через JS-бридж
-- Не нативные виджеты, но:
-  - Accessibility бесплатно
-  - Маленький бинарь (~5 MB)
-  - Используется системный WebView (не Chromium)
-
-</div>
-<div>
+<v-click>
 
 **Tooling:**
-
 ```bash
 # Создать проект
 dx new
@@ -158,33 +89,37 @@ dx serve --platform android
 dx bundle
 ```
 
-Zero-config — не нужны Gradle, Cocoapods, cargo-mobile2
-
+</v-click>
 </div>
 </div>
 
 ---
 
-# Dioxus — 0.7 и Dioxus Native
+# Dioxus - Рендеринг
 
-<v-clicks>
+<div class="grid grid-cols-2 gap-8">
+<div>
 
-- **Dioxus 0.7** представляет **Dioxus Native** — новый GPU-рендерер
-- Основан на **WGPU + Blitz** (модульный HTML/CSS рендерер)
-- Создан совместно с Firefox, Google, Servo, Bevy
-- Рендерит HTML/CSS **напрямую на GPU** — без WebView
-- Бинарь macOS-приложения < 6 MB
-- Поддерживает hot-reload, accessibility, мобильные платформы
+<v-click>
 
-</v-clicks>
+**Текущий подход (0.6):**
+- На мобилках рендерится в **WebView**
+- iOS — WKWebView, Android — Android WebView
+- VirtualDom → HTML/CSS через JS-бридж
 
-<div v-click class="mt-4">
+</v-click>
 
-| Версия | Рендерер | Технология |
-|---|---|---|
-| 0.5 / 0.6 | WebView | WKWebView / Android WebView |
-| 0.7+ | Dioxus Native (opt-in) | WGPU / Blitz (GPU, без WebView) |
+</div>
+<div>
+<v-click>
 
+**Dioxus Native (0.7):**
+- Кастомный рендерер на WGPU (Blitz)
+- Нативно, без WebView
+
+</v-click>
+
+</div>
 </div>
 
 ---
@@ -194,22 +129,21 @@ Zero-config — не нужны Gradle, Cocoapods, cargo-mobile2
 <div class="grid grid-cols-2 gap-8">
 <div>
 
+<v-clicks>
+
 - Декларативный GUI-тулкит для **Rust, C++, JS, Python**
 - Свой DSL (`.slint` файлы) → компилируется в нативный код
-- **Кастомный рендерер** — не WebView:
+- **Кастомный рендерер**:
   - FemtoVG (OpenGL ES 2.0)
   - Skia (Metal, Vulkan, OpenGL)
   - Software renderer (CPU, для embedded)
-
-**Мобильная поддержка:**
-- Android — **стабильно** с версии 1.3 (2023)
-- iOS — tech preview с версии 1.12
-- "Единственный Rust GUI-тулкит с официальной поддержкой Android"
-
+  
+</v-clicks>
 </div>
 <div>
 
-```slint
+
+```rust
 // counter.slint
 export component Counter {
     in-out property <int> count: 0;
@@ -224,40 +158,36 @@ export component Counter {
 }
 ```
 
-<div class="mt-2 text-sm">
-
-Версия 1.15 — поддержка safe-area insets и виртуальной клавиатуры на iOS/Android
-
-</div>
 
 </div>
 </div>
 
 ---
 
-# Makepad и Robius
+# Makepad
 
-<div class="grid grid-cols-2 gap-8">
-<div>
+<v-clicks>
 
-### Makepad
 - **100% GPU-рендеринг** — Metal, DirectX, OpenGL, WebGL
 - Live-design DSL с hot-reload
 - iOS и Android — через `cargo-makepad`
 - Makepad 1.0 вышел в 2025
 
-</div>
-<div>
+</v-clicks>
 
-### Robius
+---
+
+# Robius
+
+<v-clicks>
+
 - **Мета-проект** для мобильной разработки на Rust
 - Makepad (UI) + **Osiris** (платформенные API)
 - Osiris — абстракции над: камера, GPS, уведомления, хранилище, сеть
 - Цель: не писать платформенный код
 - **Robrix** — Matrix-чат клиент на чистом Rust (Makepad + Robius)
 
-</div>
-</div>
+</v-clicks>
 
 ---
 
@@ -277,7 +207,7 @@ export component Counter {
 
 <v-clicks>
 
-- **Ни один фреймворк** пока не достиг зрелости Flutter / React Native
+- Ни один фреймворк пока не достиг зрелости Flutter / React Native
 - Dioxus — самый удобный developer experience 
 - Robius — амбициозная попытка решить проблему платформенных API
 
