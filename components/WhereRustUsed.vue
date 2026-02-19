@@ -100,15 +100,19 @@
                                 </div>
                             </template>
                             <template v-else>
-                                <img
-                                    v-for="(imgSrc, idx) in currentDetail.images"
-                                    :key="idx"
-                                    :src="imgSrc"
-                                    :class="[
-                                        'object-contain',
-                                        currentDetail.imageClass || 'h-36',
-                                    ]"
-                                />
+                                <div class="flex gap-8">
+                                    <img
+                                        v-for="(
+                                            imgSrc, idx
+                                        ) in currentDetail.images"
+                                        :key="idx"
+                                        :src="imgSrc"
+                                        :class="[
+                                            'object-contain',
+                                            currentDetail.imageClass || 'h-36',
+                                        ]"
+                                    />
+                                </div>
                             </template>
                         </div>
                     </template>
@@ -207,7 +211,7 @@ const categories = [
         label: "Desktop & Web Apps",
         items: [
             { id: "opencode", label: "OpenCode" },
-            { id: "dioxus", label: "Dioxus" },
+            { id: "tauri", label: "Tauri" },
         ],
     },
     {
@@ -223,7 +227,7 @@ const categories = [
         label: "Mobile Development",
         items: [
             { id: "elementx", label: "ElementX" },
-            { id: "protonpass", label: "Proton Pass" },
+            { id: "protonpass", label: "Proton Suite" },
             { id: "firefox_mobile", label: "Firefox Mobile" },
         ],
     },
@@ -249,62 +253,58 @@ const details = {
         imageClass: "h-56",
     },
     codex: {
-        text: "<b>OpenAI Codex CLI</b> is built with Rust, providing a fast and safe command-line interface for AI-powered code generation.",
-        image: "/images/codex.svg",
-        imageClass: "h-48",
+        text: null,
+        image: "/images/codex_social.png",
+        imageClass: "h-44",
     },
     turborepo: {
-        text: "<b>Turborepo</b> rewrote its build system engine in Rust for dramatically improved performance and reliability in monorepo builds.",
-        image: "/images/turborepo.svg",
-        imageClass: "h-48",
+        text: null,
+        image: "/images/turborepo_social.png",
+        imageClass: "h-44",
     },
     ripgrep: {
         text: null,
-        images: ["/images/ripgrep.svg", "/images/fd.svg", "/images/bat.svg"],
+        images: [
+            "/images/ripgrep_social.png",
+            "/images/fd_social.png",
+            "/images/bat_social.png",
+        ],
         imageClass: "h-36",
     },
     opencode: {
         text: null,
-        image: "images/opencode.png",
+        image: "/images/opencode.png",
         imageClass: "scale-100",
     },
-    dioxus: {
+    tauri: {
         text: null,
-        images: ["/images/tauri_social.png", "/images/dioxus_social.png"],
+        image: "/images/tauri_social.png",
         imageClass: "h-44",
     },
     fuel: {
-        image: "/images/fuel-core.svg",
-        imageClass: "scale-90",
+        image: "/images/fuel_social.png",
+        imageClass: "h-44",
     },
     solana: {
-        text: "<b>Solana</b> is one of the fastest blockchain platforms, and its entire runtime and smart contract SDK are written in Rust.",
-        image: "/images/solana.svg",
-        imageClass: "scale-90",
+        text: null,
+        image: "/images/solana_social.png",
+        imageClass: "h-44",
     },
     elementx: {
         text: "<b>ElementX</b> — мессенджер на протоколе Matrix.<br/>Matrix Rust SDK.",
-        images: [
-            "/images/slide9_img5.png",
-            "/images/slide9_img6.png",
-            "/images/slide9_img7.png",
-        ],
-        imageClass: "h-36",
+        images: ["/images/slide9_img6.png", "/images/slide9_img7.png"],
+        imageClass: "h-72",
     },
     protonpass: {
-        text: "<b>Proton Pass</b> — менеджер паролей (а также почта и т.д.).<br/>Common library на Rust.",
-        images: [
-            "/images/slide10_img8.png",
-            "/images/slide10_img9.png",
-            "/images/slide10_img10.png",
-        ],
-        imageClass: "h-36",
+        text: "<b>Proton Suite</b> — менеджер паролей (а также email, vpn, cloud storage,..).<br/>Common library на Rust.",
+        images: ["/images/slide10_img8.png", "/images/proton_suite.webp"],
+        imageClass: "h-72",
     },
     firefox_mobile: {
-        text: "<b>Firefox Mobile</b> — SDK на Rust.<br/>Mozilla — компания, в которой появился Rust.",
+        text: null,
         image: "/images/slide11_img11.png",
         image_position: "right",
-        imageClass: "h-56",
+        imageClass: "scale-60",
     },
 };
 
