@@ -1,19 +1,22 @@
 ---
 theme: default
-background: https://cover.sli.dev
-title: Мобильная Разработка на Rust
-class: text-center
+title: Rust в мобильной разработке
+class: text-center text-white cover-gradient
 drawings:
   persist: false
 transition: slide-left
 mdc: true
 ---
 
-# Мобильная Разработка на Rust
+# Rust в мобильной разработке
 
 Власюк Александр
 
 Mobius 2026
+
+---
+src: ./pages/about-me.md
+---
 
 ---
 src: ./pages/intro.md

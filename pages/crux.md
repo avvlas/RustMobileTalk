@@ -89,20 +89,47 @@ layout: section
 
 ---
 
-# Crux — Kotlin/Native
+# Crux — поддержка Kotlin/Native
 
+https://github.com/redbadger/facet-generate/pull/48  
+https://github.com/zefchain/serde-reflection/pull/86
 
-- В 17.0+ поддержан typegen Kotlin/Native
-
-
-<img src="/images/slide24_img19.png" class="scale-90" />
+<img src="/images/SerdeGenerateKotlin.png" class="scale-75" />
 
 
 ---
 
-# Crux — пример приложения
+# Crux — Android пример
 
 https://github.com/redbadger/crux/pull/485
+
+<img src="/images/CruxAndroidExample.png" class="scale-75" />
+
+---
+
+# Crux в Photoroom
+
+<div class="flex h-full flex-col">
+
+- Редактор фотографий для Android / iOS / WASM
+- Engine на CRUX, нативный UI
+ 
+<img src="/images/Photoroom.webp" class="scale-75" />
+
+<div class="mt-auto text-sm break-all">
+https://www.photoroom.com/inside-photoroom/building-live-collaboration-in-rust-for-millions-of-users-part-1
+</div>
+
+</div>
+
+---
+
+# Crux в Proton
+
+- Набор open-source утилит-приложений
+- Заадоптили CRUX, рассказали на RustNation: https://github.com/ProtonMail/proton-rust-nation-2026
+
+<img src="/images/ProtonFamily.webp" class="scale-60 -mt-16" />
 
 ---
 
@@ -116,8 +143,8 @@ https://github.com/redbadger/crux/pull/485
 **Плюсы:**
 - Активно развивается
 - Отзывчивое сообщество
+- Тестируемость core-логики
 - Web — first-class citizen
-- Тесты core-логики за миллисекунды
 - Compile-time safety через typegen
 
 </v-click>
@@ -129,9 +156,8 @@ https://github.com/redbadger/crux/pull/485
 
 **Минусы:**
 - Pre-1.0, API может меняться
-- Мало примеров real-world приложений
-- Много бойлерплейта в инфраструктурном коде
-- `serde-generate` — не идеальное решение для typegen
+- Бойлерплейт в инфраструктурном/bridge коде
+- Мало примеров real-world приложений*
 
 </v-click>
 

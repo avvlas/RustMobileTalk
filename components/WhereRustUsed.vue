@@ -211,6 +211,7 @@ const categories = [
         label: "Desktop & Web Apps",
         items: [
             { id: "opencode", label: "OpenCode" },
+            { id: "zed", label: "Zed IDE" },
             { id: "tauri", label: "Tauri" },
         ],
     },
@@ -275,6 +276,11 @@ const details = {
         text: null,
         image: "/images/opencode.png",
         imageClass: "scale-100",
+    },
+    zed: {
+        text: null,
+        image: "/images/zed_social.png",
+        imageClass: "h-44",
     },
     tauri: {
         text: null,

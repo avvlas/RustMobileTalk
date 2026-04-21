@@ -37,14 +37,9 @@ layout: section
 
 ---
 
-# FFI в Rust — экспорт функции
-
-Простейший пример: экспортируем функцию из Rust
+# Ручной FFI в Rust
 
 ```rust
-// lib.rs — Rust библиотека
-
-/// Складывает два числа
 #[no_mangle]
 pub extern "C" fn add(a: i32, b: i32) -> i32 {
     a + b
@@ -154,36 +149,12 @@ println("2 + 3 = $result") // 5
 
 # Проблемы ручного FFI
 
-<style>
-.ffi-problems li {
-  transition: opacity 200ms ease;
-}
-.ffi-problems.has-focus li {
-  opacity: 0.4;
-}
-.ffi-problems.has-focus li.focused {
-  opacity: 1;
-}
-</style>
+- C ABI не поддерживает сложные типы (String, Vec, enum)
+- Boilerplate — JNI-обёртки, хедеры .h
+- Ручное управление памятью через границу
+- Легко допустить ошибку (утечки памяти, UB)
 
-<!--
-  Register click steps 1-4 with hidden elements.
-  All visual focus is handled via $clicks + CSS.
--->
-<span v-click="1" class="hidden" />
-<span v-click="2" class="hidden" />
-<span v-click="3" class="hidden" />
-<span v-click="4" class="hidden" />
+<div v-click="1" class="mt-4 text-center text-xl">
 
-<ul class="ffi-problems text-lg" :class="{ 'has-focus': $clicks >= 1 && $clicks <= 4 }">
-  <li :class="{ focused: $clicks === 1 }">C ABI не поддерживает сложные типы (String, Vec, enum)</li>
-  <li :class="{ focused: $clicks === 2 }">Boilerplate — JNI-обёртки, хедеры .h</li>
-  <li :class="{ focused: $clicks === 3 }">Ручное управление памятью через границу</li>
-  <li :class="{ focused: $clicks === 4 }">Легко допустить ошибку (утечки памяти, UB)</li>
-</ul>
-
-<div v-click="5" class="mt-4 text-center text-xl">
-
-**Решение → UniFFI** — автоматическая генерация биндингов
-
+**Решение → UniFFI**
 </div>

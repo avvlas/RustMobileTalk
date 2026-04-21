@@ -1,0 +1,23 @@
+.slidev-layout.cover-gradient {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(45deg, #ff7a18 0%, #7a2f00 38%, #1a0d05 68%, #000000 100%);
+}
+
+.slidev-layout.cover-gradient::before {
+  content: "";
+  position: absolute;
+  inset: -15%;
+  background:
+    radial-gradient(circle at 14% 86%, rgba(255, 168, 76, 0.58) 0%, rgba(255, 122, 24, 0.28) 4%, rgba(255, 122, 24, 0) 8%),
+    radial-gradient(circle at 22% 78%, rgba(255, 122, 24, 0.18) 0%, rgba(255, 122, 24, 0) 6%);
+  filter: blur(56px);
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+.slidev-layout.cover-gradient > * {
+  position: relative;
+  z-index: 1;
+}

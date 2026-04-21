@@ -6,32 +6,13 @@ layout: section
 
 ---
 
-# А что, если хочется и UI на Rust?
-
-<v-clicks>
-
-- Подходы Crux и UniFFI: **логика** на Rust, **UI** — нативный (SwiftUI, Compose, React)
-- Но что если хочется **всё** на Rust — включая UI?
-
-</v-clicks>
-
-<div v-click class="mt-4 text-center text-lg font-bold">
-
-Несколько фреймворков уже позволяют это делать
-
-</div>
-
----
-
 # Dioxus
 
 <div class="grid grid-cols-[1fr_auto] gap-8 items-center">
 <div>
 
 - **React-like** фреймворк на Rust
-- Один `main.rs` → Web, Desktop, iOS, Android
-- RSX-макрос (аналог JSX)
-- Signals для реактивного состояния
+- Web, Desktop, iOS, Android
 - CLI `dx` — serve, bundle, hot-reload
 
 </div>
@@ -97,7 +78,7 @@ dx bundle
 
 # Dioxus - Рендеринг
 
-<div class="grid grid-cols-2 gap-8">
+<div class="grid grid-rows-2 gap-8">
 <div>
 
 <v-click>
@@ -131,11 +112,13 @@ dx bundle
 
 <v-clicks>
 
-- Декларативный GUI-тулкит для **Rust, C++, JS, Python**
-- Свой DSL (`.slint` файлы) → компилируется в нативный код
-- **Кастомный рендерер**:
-  - FemtoVG (OpenGL ES 2.0)
-  - Skia (Metal, Vulkan, OpenGL)
+- **Декларативный GUI-тулкит** для Rust
+- Свой DSL `.slint`
+
+- **Можно выбрать реднеринг**:
+  - QT
+  - Skia 
+  - FemtoVG 
   - Software renderer (CPU, для embedded)
   
 </v-clicks>
@@ -166,28 +149,24 @@ export component Counter {
 
 # Makepad
 
-<v-clicks>
 
 - **100% GPU-рендеринг** — Metal, DirectX, OpenGL, WebGL
 - Live-design DSL с hot-reload
 - iOS и Android — через `cargo-makepad`
 - Makepad 1.0 вышел в 2025
 
-</v-clicks>
 
 ---
 
 # Robius
 
-<v-clicks>
 
 - **Мета-проект** для мобильной разработки на Rust
-- Makepad (UI) + **Osiris** (платформенные API)
-- Osiris — абстракции над: камера, GPS, уведомления, хранилище, сеть
-- Цель: не писать платформенный код
-- **Robrix** — Matrix-чат клиент на чистом Rust (Makepad + Robius)
+- **Makepad** для UI
+- **Osiris** — абстракции над платформенными API (камера, GPS, уведомления, хранилище, сеть)
+- **Цель** — не писать платформенный код
+- **Robrix** — Matrix-клиент на чистом Rust (Makepad + Robius)
 
-</v-clicks>
 
 ---
 
@@ -195,28 +174,18 @@ export component Counter {
 
 | | **Dioxus** | **Slint** | **Makepad** |
 |---|---|---|---|
-| Парадигма | React-like, RSX, signals | Декларативный DSL | Hybrid retained/immediate |
-| Рендеринг | WebView (0.6) / WGPU (0.7) | Custom (Skia/FemtoVG/CPU) | 100% GPU |
-| Hot reload | Да | Да | Да |
-| Accessibility | Через WebView | Да (Narrator) | Нет |
-| Зрелость | Pre-1.0, быстро развивается | 1.15, стабильный | 1.0 |
+| **Парадигма** | React-like, RSX, signals | Декларативный DSL | Hybrid retained/immediate |
+| **Рендеринг** | WebView (0.6) / WGPU (0.7) | Custom (Skia/FemtoVG/CPU) | 100% GPU |
+| **Hot reload** | Да | Да | Да |
+| **Accessibility** | Через WebView | Да (Narrator) | Нет |
+| **Зрелость** | Pre-1.0, быстро развивается | 1.15, стабильный | 1.0 |
 
 ---
 
 # Rust GUI для мобилок — текущий стейт
 
-<v-clicks>
 
 - Ни один фреймворк пока не достиг зрелости Flutter / React Native
 - Dioxus — самый удобный developer experience 
 - Robius — амбициозная попытка решить проблему платформенных API
 
-</v-clicks>
-
-<div v-click class="mt-4">
-
-**Когда это имеет смысл:**
-- Команда знает Rust, но не знает Swift/Kotlin
-- Нужен Web + Mobile + Desktop из одного проекта
-
-</div>

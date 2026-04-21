@@ -224,7 +224,7 @@ doWork(logger: SwiftLogger())
 
 Маппинг кастомных типов на нативные типы платформ:
 
-```rust {all|1|2|3-6|7|all}
+```rust {all|1|3-6|7|none}
 uniffi::custom_type!(UtcDateTime, i64, {
     remote,
     try_lift: |val| {
@@ -235,13 +235,7 @@ uniffi::custom_type!(UtcDateTime, i64, {
 });
 ```
 
-```toml {all|1-5|7-11|all}
-# Swift: UtcDateTime → Date
-[bindings.swift.custom_types.UtcDateTime]
-type_name = "Date"
-into_custom = "Date(timeIntervalSince1970: Double({}) / 1000.0)"
-from_custom = "Int64({}.timeIntervalSince1970 * 1000)"
-
+```toml {none|all}
 # Kotlin: UtcDateTime → java.util.Date
 [bindings.kotlin.custom_types.UtcDateTime]
 type_name = "java.util.Date"
