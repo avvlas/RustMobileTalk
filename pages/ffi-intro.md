@@ -2,7 +2,7 @@
 layout: section
 ---
 
-# Foreign Function Interface
+# FFI
 
 ---
 

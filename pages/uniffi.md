@@ -50,13 +50,8 @@
 // lib.rs
 
 #[uniffi::export]
-fn add(a: i32, b: i32) -> i32 {
-    a + b
-}
-
-#[uniffi::export]
 fn hello(name: String) -> String {
-    format!("Привет, {}!", name)
+    format!("Hello, {}!", name)
 }
 
 uniffi::setup_scaffolding!();
@@ -81,7 +76,6 @@ uniffi::setup_scaffolding!();
 
 ```swift
 // uniffi-bindgen generated
-public func add(a: Int32, b: Int32) -> Int32 { ... }
 public func hello(name: String) -> String { ... }
 ```
 
@@ -90,7 +84,6 @@ public func hello(name: String) -> String { ... }
 ```swift
 import MyRustLib
 
-let result = add(a: 2, b: 3)      // 5
 let greeting = hello(name: "World")  // "Hello, world!"
 ```
 
@@ -102,7 +95,6 @@ let greeting = hello(name: "World")  // "Hello, world!"
 
 ```kotlin
 // uniffi-bindgen generated
-fun add(a: Int, b: Int): Int { ... }
 fun hello(name: String): String { ... }
 ```
 
@@ -111,13 +103,17 @@ fun hello(name: String): String { ... }
 ```kotlin
 import com.example.mylib.*
 
-val result = add(2, 3)          // 5
 val greeting = hello("World")     // "Hello, world!"
 ```
 
 Работает через JNA (Java Native Access), без ручного JNI
 
 ---
+
+# UniFFI — Lifting & Lowering
+
+<img src="/images/UniffiLiftLower.png" class="scale-56" />
+___
 
 # UniFFI — объекты в Swift / Kotlin
 
@@ -224,7 +220,7 @@ doWork(logger: SwiftLogger())
 
 Маппинг кастомных типов на нативные типы платформ:
 
-```rust {all|1|3-6|7|none}
+<!--```rust {all|1|3-6|7|none}
 uniffi::custom_type!(UtcDateTime, i64, {
     remote,
     try_lift: |val| {
@@ -233,10 +229,10 @@ uniffi::custom_type!(UtcDateTime, i64, {
     },
     lower: |obj| obj.timestamp_millis(),
 });
-```
+```-->
 
 ```toml {none|all}
-# Kotlin: UtcDateTime → java.util.Date
+# Rust UtcDateTime → Kotlin java.util.Date
 [bindings.kotlin.custom_types.UtcDateTime]
 type_name = "java.util.Date"
 into_custom = "java.util.Date({})"

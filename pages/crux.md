@@ -116,9 +116,12 @@ https://github.com/redbadger/crux/pull/485
  
 <img src="/images/Photoroom.webp" class="scale-75" />
 
-<div class="mt-auto text-sm break-all">
-https://www.photoroom.com/inside-photoroom/building-live-collaboration-in-rust-for-millions-of-users-part-1
-</div>
+<!--<a
+  href="https://www.photoroom.com/inside-photoroom/building-live-collaboration-in-rust-for-millions-of-users-part-1"
+  class="mt-2 text-xs leading-tight"
+>
+  photoroom.com/inside-photoroom/building-live-collaboration-in-rust-for-millions-of-users-part-1
+</a>-->
 
 </div>
 
@@ -144,8 +147,8 @@ https://www.photoroom.com/inside-photoroom/building-live-collaboration-in-rust-f
 - Активно развивается
 - Отзывчивое сообщество
 - Тестируемость core-логики
-- Web — first-class citizen
-- Compile-time safety через typegen
+- Кастомный typegen
+- Поддерживает web (wasm-bindgen)
 
 </v-click>
 

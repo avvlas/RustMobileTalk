@@ -210,9 +210,9 @@ const categories = [
         id: "desktop",
         label: "Desktop & Web Apps",
         items: [
-            { id: "opencode", label: "OpenCode" },
             { id: "zed", label: "Zed IDE" },
             { id: "tauri", label: "Tauri" },
+            { id: "opencode", label: "OpenCode" },
         ],
     },
     {
@@ -229,7 +229,7 @@ const categories = [
         items: [
             { id: "elementx", label: "ElementX" },
             { id: "protonpass", label: "Proton Suite" },
-            { id: "firefox_mobile", label: "Firefox Mobile" },
+            { id: "firefox_mobile", label: "Firefox" },
         ],
     },
 ];
