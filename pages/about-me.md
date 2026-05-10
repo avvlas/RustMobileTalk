@@ -4,7 +4,7 @@
 <div class="font-medium">
 
 - Android-разработчик в Яндексе
-- Блог "Записки Инженера" (@avvlased)
+- "Записки Инженера" - [@avvlased](https://t.me/avvlased)
 
 <img
   src="/images/TelegramQR.png"

@@ -112,7 +112,7 @@ val greeting = hello("World")     // "Hello, world!"
 
 # UniFFI — Lifting & Lowering
 
-<img src="/images/UniffiLiftLower.png" class="scale-56" />
+<img src="/images/UniffiLiftLower.png" class="scale-56 -mt-16" />
 ___
 
 # UniFFI — объекты в Swift / Kotlin

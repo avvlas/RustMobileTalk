@@ -6,7 +6,7 @@ layout: section
 
 ---
 
-# Crux — что это?
+# Crux
 
 <div class="grid grid-cols-2 gap-8">
 <div>
@@ -18,7 +18,7 @@ layout: section
 </div>
 <div>
 
-<img src="/images/slide21_img16.png" class="scale-150" />
+<img src="/images/slide21_img16.png" class="scale-150 mt-16" />
 
 </div>
 </div>
@@ -53,7 +53,7 @@ layout: section
 </div>
 <div>
 
-<img src="/images/slide22_img17.png" class="h-72 mx-auto" />
+<img src="/images/crux_design_overview.png" class="scale-128" />
 
 </div>
 </div>
