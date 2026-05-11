@@ -63,7 +63,7 @@ layout: section
 
 # Синтаксис Rust
 
-<div class="grid grid-cols-2 gap-4">
+<div class="grid grid-cols-1 gap-4">
 <div>
 
 ```rust {all|1-3|5-9|11-19|all}
@@ -94,7 +94,7 @@ match result {
 
 # Traits и Generics
 
-<div class="grid grid-cols-2 gap-4">
+<div class="grid grid-cols-1 gap-4">
 <div>
 
 ```rust {all|1-4|6-12|14-16|all}
@@ -126,7 +126,7 @@ fn load<T: ApiService>(service: &T) {
 У каждого значения ровно один владелец.  
 
 ```rust {all|1-2|4-5|7-8|all}
-let data = vec![1, 2, 3];   // `data` владеет вектором
+let data = "hello";         // `data` владеет строкой
 let data2 = data;           // владение перешло к `data2`
 
 println!("{:?}", data);     // ❌ ОШИБКА КОМПИЛЯЦИИ!
@@ -136,7 +136,7 @@ println!("{:?}", data2);    // ✅ ОК — `data2` владелец
 ```
 
 <v-click>
-Компилятор точно знает, когда нужно освободить память — без GC и без ручного управления
+Компилятор точно знает, когда нужно освободить память — без GC и ручного управления
 </v-click>
 
 ---
@@ -146,19 +146,19 @@ println!("{:?}", data2);    // ✅ ОК — `data2` владелец
 Можно не передавать владение, а **заимствовать** (`&`)
 
 ```rust {all|1-3|5-7|9-14|all}
-fn print_len(data: &Vec<i32>) { // заимствование 
+fn print_len(data: &String) { // заимствование 
     println!("Длина: {}", data.len());
 } // заимствование заканчивается
 
-fn add_element(data: &mut Vec<i32>) { // мутабельное заимствование
-    data.push(42);
+fn add_text(data: &mut String) { // мутабельное заимствование
+    data.push_str("!");
 }
 
 // Правило: сколько угодно &, ИЛИ одна &mut
-let mut items = vec![1, 2, 3];
-print_len(&items);           // ✅ иммутабельное заимствование
-add_element(&mut items);     // ✅ мутабельное заимствование
-print_len(&items);           // ✅ снова можно читать
+let mut text = String::from("Rust");
+print_len(&text);            // ✅ иммутабельное заимствование
+add_text(&mut text);         // ✅ мутабельное заимствование
+print_len(&text);            // ✅ снова можно читать
 ```
 
 <div class="mt-2 p-3  ">

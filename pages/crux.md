@@ -53,7 +53,7 @@ layout: section
 </div>
 <div>
 
-<img src="/images/crux_design_overview.png" class="scale-128" />
+<img src="/images/crux_design_overview.png" class="scale-132" />
 
 </div>
 </div>
@@ -91,17 +91,12 @@ layout: section
 
 # Crux — поддержка Kotlin/Native
 
-https://github.com/redbadger/facet-generate/pull/48  
-https://github.com/zefchain/serde-reflection/pull/86
-
 <img src="/images/SerdeGenerateKotlin.png" class="scale-75" />
 
 
 ---
 
 # Crux — Android пример
-
-https://github.com/redbadger/crux/pull/485
 
 <img src="/images/CruxAndroidExample.png" class="scale-75" />
 

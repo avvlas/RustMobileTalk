@@ -48,6 +48,22 @@ const imageSources = {
             href: "https://redbadger.github.io/crux/",
         },
     ],
+    37: [
+        {
+            label: "Facet-generate pull #48",
+            href: "https://github.com/redbadger/facet-generate/pull/48",
+        },
+        {
+            label: "Serde-reflection pull #86",
+            href: "https://github.com/zefchain/serde-reflection/pull/86",
+        },
+    ],
+    38: [
+        {
+            label: "Crux pull #485",
+            href: "https://github.com/redbadger/crux/pull/485",
+        },
+    ],
     39: [
         {
             label: "Photoroom",
@@ -77,7 +93,7 @@ const imageSources = {
 
 <template>
     <div v-if="imageSources[$nav.currentSlideNo]?.length" class="image-sources">
-        <span class="prefix">Источник:</span>
+        <span v-if="![37, 38].includes($nav.currentSlideNo)" class="prefix">Источник:</span>
         <span
             v-for="source in imageSources[$nav.currentSlideNo]"
             :key="source.href"

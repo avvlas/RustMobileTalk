@@ -383,6 +383,12 @@ function onKeyDown(e) {
         if (moveDown()) e.stopPropagation();
     } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
         if (moveUp()) e.stopPropagation();
+    } else if (e.key === " " || e.key === "Spacebar") {
+        const moved = e.shiftKey ? moveUp() : moveDown();
+        if (moved) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
     }
 }
 

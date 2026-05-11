@@ -64,7 +64,7 @@ int32_t add(int32_t a, int32_t b);
 ```
 
 </div>
-<div v-click="1">
+<div v-click="2">
 
 **2. Вызов в Swift**
 
@@ -79,7 +79,7 @@ print("2 + 3 = \(result)") // 5
 </div>
 </div>
 
-<div v-click="2" class="mt-4">
+<div v-click="1" class="mt-4">
 
 **Сборка:**
 - `cargo build --target aarch64-apple-ios` → `libmylib.a`
@@ -91,7 +91,7 @@ print("2 + 3 = \(result)") // 5
 
 # Вызов из Kotlin (Android)
 
-<div class="grid grid-cols-2 gap-4">
+<div class="grid grid-cols-2 gap-4" style="--slidev-code-font-size: 12px; --slidev-code-line-height: 16px;">
 <div>
 
 **1. JNI обёртка в Rust**
@@ -113,7 +113,7 @@ pub extern "system" fn
 ```
 
 </div>
-<div v-click="1">
+<div v-click="2">
 
 **2. Вызов в Kotlin**
 
@@ -137,7 +137,7 @@ println("2 + 3 = $result") // 5
 </div>
 </div>
 
-<div v-click="2">
+<div v-click="1">
 
 **Сборка:**
 - `cargo build --target aarch64-linux-android` → `libmylib.so`
