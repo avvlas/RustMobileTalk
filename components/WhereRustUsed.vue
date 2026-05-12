@@ -166,24 +166,24 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from "vue";
-import androidLogo from "../public/images/android_logo.png";
-import batSocial from "../public/images/bat_social.png";
-import codexSocial from "../public/images/codex_social.png";
-import fdSocial from "../public/images/fd_social.png";
-import fuelSocial from "../public/images/fuel_social.png";
-import opencodeImage from "../public/images/opencode.png";
-import protonSuite from "../public/images/proton_suite.webp";
-import ripgrepSocial from "../public/images/ripgrep_social.png";
-import rustEmbedded from "../public/images/rust_embedded.webp";
-import slide6Image from "../public/images/slide6_img3.png";
-import slide9Image6 from "../public/images/slide9_img6.png";
-import slide9Image7 from "../public/images/slide9_img7.png";
-import slide10Image8 from "../public/images/slide10_img8.png";
-import slide11Image11 from "../public/images/slide11_img11.png";
-import solanaSocial from "../public/images/solana_social.png";
-import tauriSocial from "../public/images/tauri_social.png";
-import turborepoSocial from "../public/images/turborepo_social.png";
-import zedSocial from "../public/images/zed_social.png";
+import androidLogo from "/images/android_logo.png?url";
+import batSocial from "/images/bat_social.png?url";
+import codexSocial from "/images/codex_social.png?url";
+import fdSocial from "/images/fd_social.png?url";
+import fuelSocial from "/images/fuel_social.png?url";
+import opencodeImage from "/images/opencode.png?url";
+import protonSuite from "/images/proton_suite.webp?url";
+import ripgrepSocial from "/images/ripgrep_social.png?url";
+import rustEmbedded from "/images/rust_embedded.webp?url";
+import slide6Image from "/images/slide6_img3.png?url";
+import slide9Image6 from "/images/slide9_img6.png?url";
+import slide9Image7 from "/images/slide9_img7.png?url";
+import slide10Image8 from "/images/slide10_img8.png?url";
+import slide11Image11 from "/images/slide11_img11.png?url";
+import solanaSocial from "/images/solana_social.png?url";
+import tauriSocial from "/images/tauri_social.png?url";
+import turborepoSocial from "/images/turborepo_social.png?url";
+import zedSocial from "/images/zed_social.png?url";
 
 const props = defineProps({
     initialCollapsed: {
