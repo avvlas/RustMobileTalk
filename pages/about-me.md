@@ -10,7 +10,7 @@
   <img
     src="/images/TelegramQR.png"
     alt="Telegram QR"
-    class="mt-8 h-36 bg-white p-2 shadow-m"
+    class="mt-8 h-40 bg-white p-2 shadow-m"
   />
 </a>
 

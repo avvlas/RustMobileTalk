@@ -11,6 +11,10 @@ const imageSources = {
             label: "Windows Latest",
             href: "https://www.windowslatest.com/2025/12/24/microsoft-confirms-eliminate-c-and-c-plan-translate-code-to-rust-using-ai-as-windows-11-adopts-rust-and-webview2/",
         },
+        {
+            label: "Forbes",
+            href: "https://www.forbes.com/councils/forbestechcouncil/2026/03/03/rust-the-unlikely-engine-of-the-vibe-coding-era/",
+        },
     ],
     8: [
         {
@@ -22,12 +26,6 @@ const imageSources = {
         {
             label: "UniFFI Docs",
             href: "https://mozilla.github.io/uniffi-rs/latest/",
-        },
-    ],
-    34: [
-        {
-            label: "Crux overview",
-            href: "https://redbadger.github.io/crux/",
         },
     ],
     35: [
@@ -44,6 +42,12 @@ const imageSources = {
     ],
     37: [
         {
+            label: "Crux overview",
+            href: "https://redbadger.github.io/crux/",
+        },
+    ],
+    38: [
+        {
             label: "Facet-generate pull #48",
             href: "https://github.com/redbadger/facet-generate/pull/48",
         },
@@ -52,25 +56,25 @@ const imageSources = {
             href: "https://github.com/zefchain/serde-reflection/pull/86",
         },
     ],
-    38: [
+    39: [
         {
             label: "Crux pull #485",
             href: "https://github.com/redbadger/crux/pull/485",
         },
     ],
-    39: [
+    40: [
         {
             label: "Photoroom",
             href: "https://www.photoroom.com/",
         },
     ],
-    40: [
+    41: [
         {
             label: "Proton",
             href: "https://proton.me/",
         },
     ],
-    43: [
+    45: [
         {
             label: "Dioxus Labs",
             href: "https://dioxuslabs.com/",

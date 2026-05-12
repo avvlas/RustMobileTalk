@@ -32,19 +32,29 @@ layout: section
 <div class="rust-resources-grid">
   <ul class="rust-resources-list">
     <li :class="{ 'is-active': $slidev.nav.clicks === 0, 'is-dimmed': $slidev.nav.clicks !== 0 }">
-      The Rust Programming Language
+      <a href="https://doc.rust-lang.org/book/" target="_blank" rel="noopener noreferrer">
+        The Rust Programming Language
+      </a>
     </li>
     <li :class="{ 'is-active': $slidev.nav.clicks === 1, 'is-dimmed': $slidev.nav.clicks !== 1 }">
-      Rustlings
+      <a href="https://github.com/rust-lang/rustlings" target="_blank" rel="noopener noreferrer">
+        Rustlings
+      </a>
     </li>
     <li :class="{ 'is-active': $slidev.nav.clicks === 2, 'is-dimmed': $slidev.nav.clicks !== 2 }">
-      Microsoft: Rust Training
+      <a href="https://learn.microsoft.com/en-us/training/paths/rust-first-steps/" target="_blank" rel="noopener noreferrer">
+        Microsoft: Rust Training
+      </a>
     </li>
     <li :class="{ 'is-active': $slidev.nav.clicks === 3, 'is-dimmed': $slidev.nav.clicks !== 3 }">
-      Google: Comprehensive Rust 
+      <a href="https://google.github.io/comprehensive-rust/" target="_blank" rel="noopener noreferrer">
+        Google: Comprehensive Rust
+      </a>
     </li>
     <li :class="{ 'is-active': $slidev.nav.clicks >= 4, 'is-dimmed': $slidev.nav.clicks < 4 }">
+      <a href="https://raytracing.github.io/books/RayTracingInOneWeekend.html" target="_blank" rel="noopener noreferrer">
         Ray Tracing in One Weekend?
+      </a>
     </li>
   </ul>
 
@@ -64,11 +74,13 @@ class: text-center
 
 # Спасибо!
 
-<img
-  src="/images/TelegramQR.png"
-  alt="Telegram QR"
-  class="h-36 bg-white p-2 shadow-m"
-/>
+<div class="flex justify-center">
+  <img
+    src="/images/TelegramQR.png"
+    alt="Telegram QR"
+    class="h-48"
+  />
+</div>
 
 Власюк Александр
 

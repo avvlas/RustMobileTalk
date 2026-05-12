@@ -32,8 +32,9 @@ layout: section
 <br></br>
   "На Rust трудно запустить неработающий код"
 
-<div class="flex justify-center items-center h-3/5">
-<img src="/images/MicrosoftRustAi.png" class="max-h-36 max-w-full object-contain" />
+<div class="flex flex-col justify-center items-center ">
+<img src="/images/MicrosoftRustAi.png" class="scale-70 object-contain" />
+<img src="/images/RustVibecodingEngine.png" class="scale-70 object-contain" />
 </div>
 
 ---
