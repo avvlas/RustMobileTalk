@@ -44,7 +44,7 @@ layout: section
       Google: Comprehensive Rust 
     </li>
     <li :class="{ 'is-active': $slidev.nav.clicks === 4, 'is-dimmed': $slidev.nav.clicks !== 4 }">
-        Ray tracing in one weekend?
+        Ray Tracing in One Weekend?
     </li>
   </ul>
 
