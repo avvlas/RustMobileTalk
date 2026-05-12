@@ -166,6 +166,24 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from "vue";
+import androidLogo from "../public/images/android_logo.png";
+import batSocial from "../public/images/bat_social.png";
+import codexSocial from "../public/images/codex_social.png";
+import fdSocial from "../public/images/fd_social.png";
+import fuelSocial from "../public/images/fuel_social.png";
+import opencodeImage from "../public/images/opencode.png";
+import protonSuite from "../public/images/proton_suite.webp";
+import ripgrepSocial from "../public/images/ripgrep_social.png";
+import rustEmbedded from "../public/images/rust_embedded.webp";
+import slide6Image from "../public/images/slide6_img3.png";
+import slide9Image6 from "../public/images/slide9_img6.png";
+import slide9Image7 from "../public/images/slide9_img7.png";
+import slide10Image8 from "../public/images/slide10_img8.png";
+import slide11Image11 from "../public/images/slide11_img11.png";
+import solanaSocial from "../public/images/solana_social.png";
+import tauriSocial from "../public/images/tauri_social.png";
+import turborepoSocial from "../public/images/turborepo_social.png";
+import zedSocial from "../public/images/zed_social.png";
 
 const props = defineProps({
     initialCollapsed: {
@@ -177,12 +195,7 @@ const props = defineProps({
 const rootEl = ref(null);
 
 function assetUrl(path) {
-    if (!path) return "";
-    if (/^(https?:)?\/\//.test(path) || path.startsWith("data:")) return path;
-
-    const imageName = path.replace(/^\/+/, "").replace(/^images\//, "");
-    const chunkUrl = new URL(import.meta.url);
-    return new URL(`../images/${imageName}`, chunkUrl).href;
+    return path || "";
 }
 
 function isActive() {
@@ -246,78 +259,74 @@ const categories = [
 const details = {
     linux: {
         text: "<b>In December 2025 it was decided to promote Rust from experimental to a core part of the kernel.</b><br/><br/><b>This expands the core languages in the Linux kernel to C, assembly and Rust.</b>",
-        image: "/images/slide6_img3.png",
+        image: slide6Image,
         image_position: "top",
         imageClass: "h-36",
     },
     android: {
         text: '<b>In Android 13, about 21% of all new native code is in Rust.</b><br/><b>1.5 million total lines of Rust code in AOSP</b><br/><br/><i>"A 1000x reduction in memory safety vulnerability density compared to Android\'s C and C++ code.<br/>With Rust changes having a 4x lower rollback rate and spending 25% less time in code review"</i>',
-        image: "/images/android_logo.png",
+        image: androidLogo,
         image_position: "top",
         imageClass: "h-24",
     },
     embedded: {
         text: null,
-        image: "/images/rust_embedded.webp",
+        image: rustEmbedded,
         image_position: "top",
         imageClass: "h-56",
     },
     codex: {
         text: null,
-        image: "/images/codex_social.png",
+        image: codexSocial,
         imageClass: "h-44",
     },
     turborepo: {
         text: null,
-        image: "/images/turborepo_social.png",
+        image: turborepoSocial,
         imageClass: "h-44",
     },
     ripgrep: {
         text: null,
-        images: [
-            "/images/ripgrep_social.png",
-            "/images/fd_social.png",
-            "/images/bat_social.png",
-        ],
+        images: [ripgrepSocial, fdSocial, batSocial],
         imageClass: "h-36",
     },
     opencode: {
         text: null,
-        image: "/images/opencode.png",
+        image: opencodeImage,
         imageClass: "scale-100",
     },
     zed: {
         text: null,
-        image: "/images/zed_social.png",
+        image: zedSocial,
         imageClass: "h-44",
     },
     tauri: {
         text: null,
-        image: "/images/tauri_social.png",
+        image: tauriSocial,
         imageClass: "h-44",
     },
     fuel: {
-        image: "/images/fuel_social.png",
+        image: fuelSocial,
         imageClass: "h-44",
     },
     solana: {
         text: null,
-        image: "/images/solana_social.png",
+        image: solanaSocial,
         imageClass: "h-44",
     },
     elementx: {
         text: "<b>ElementX</b> — мессенджер на протоколе Matrix.<br/>Matrix Rust SDK.",
-        images: ["/images/slide9_img6.png", "/images/slide9_img7.png"],
+        images: [slide9Image6, slide9Image7],
         imageClass: "h-72",
     },
     protonpass: {
         text: "<b>Proton Suite</b> — менеджер паролей (а также email, vpn, cloud storage,..).<br/>Common library на Rust.",
-        images: ["/images/slide10_img8.png", "/images/proton_suite.webp"],
+        images: [slide10Image8, protonSuite],
         imageClass: "h-72",
     },
     firefox_mobile: {
         text: null,
-        image: "/images/slide11_img11.png",
+        image: slide11Image11,
         image_position: "right",
         imageClass: "scale-60",
     },

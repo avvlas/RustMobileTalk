@@ -2,7 +2,7 @@
 layout: section
 ---
 
-# Зачем нужен Rust?
+# Зачем мне Rust?
 
 ---
 
