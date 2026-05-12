@@ -76,12 +76,6 @@ const imageSources = {
             href: "https://dioxuslabs.com/",
         },
     ],
-    54: [
-        {
-            label: "Telegram",
-            href: "https://t.me/avvlased",
-        },
-    ],
 };
 </script>
 

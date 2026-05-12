@@ -76,7 +76,7 @@
                         <div class="flex flex-col items-center gap-4">
                             <template v-if="currentDetail.images.length === 3">
                                 <img
-                                    :src="currentDetail.images[0]"
+                                    :src="assetUrl(currentDetail.images[0])"
                                     :class="[
                                         'object-contain',
                                         currentDetail.imageClass || 'h-36',
@@ -84,14 +84,14 @@
                                 />
                                 <div class="flex gap-8">
                                     <img
-                                        :src="currentDetail.images[1]"
+                                        :src="assetUrl(currentDetail.images[1])"
                                         :class="[
                                             'object-contain',
                                             currentDetail.imageClass || 'h-36',
                                         ]"
                                     />
                                     <img
-                                        :src="currentDetail.images[2]"
+                                        :src="assetUrl(currentDetail.images[2])"
                                         :class="[
                                             'object-contain',
                                             currentDetail.imageClass || 'h-36',
@@ -106,7 +106,7 @@
                                             imgSrc, idx
                                         ) in currentDetail.images"
                                         :key="idx"
-                                        :src="imgSrc"
+                                        :src="assetUrl(imgSrc)"
                                         :class="[
                                             'object-contain',
                                             currentDetail.imageClass || 'h-36',
@@ -123,7 +123,7 @@
                                 (currentDetail.image_position === 'top' ||
                                     !currentDetail.image_position)
                             "
-                            :src="currentDetail.image"
+                            :src="assetUrl(currentDetail.image)"
                             :class="[
                                 'object-contain mx-auto mb-6',
                                 currentDetail.imageClass || 'h-36',
@@ -147,7 +147,7 @@
                                 currentDetail.image_position !== 'top' &&
                                 currentDetail.image_position
                             "
-                            :src="currentDetail.image"
+                            :src="assetUrl(currentDetail.image)"
                             :class="[
                                 'object-contain',
                                 currentDetail.image_position === 'left' ||
@@ -175,6 +175,14 @@ const props = defineProps({
 });
 
 const rootEl = ref(null);
+
+function assetUrl(path) {
+    if (!path) return "";
+    if (/^(https?:)?\/\//.test(path) || path.startsWith("data:")) return path;
+
+    const base = import.meta.env.BASE_URL || "/";
+    return `${base.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+}
 
 function isActive() {
     if (!rootEl.value) return false;

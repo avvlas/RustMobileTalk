@@ -43,7 +43,7 @@ layout: section
     <li :class="{ 'is-active': $slidev.nav.clicks === 3, 'is-dimmed': $slidev.nav.clicks !== 3 }">
       Google: Comprehensive Rust 
     </li>
-    <li :class="{ 'is-active': $slidev.nav.clicks === 4, 'is-dimmed': $slidev.nav.clicks !== 4 }">
+    <li :class="{ 'is-active': $slidev.nav.clicks >= 4, 'is-dimmed': $slidev.nav.clicks < 4 }">
         Ray Tracing in One Weekend?
     </li>
   </ul>
@@ -53,7 +53,7 @@ layout: section
     <img v-if="$slidev.nav.clicks === 1" src="/images/Rustlings.png" alt="Rustlings" />
     <img v-if="$slidev.nav.clicks === 2" src="/images/MicrosoftRustTraining.png" alt="Microsoft Rust Training" />
     <img v-if="$slidev.nav.clicks === 3" src="/images/GoogleComprehensiveRust.png" alt="Google Comprehensive Rust" />
-    <img v-if="$slidev.nav.clicks === 4" src="/images/RayTracing.jpg" alt="Ray tracing in one weekend" />
+    <img v-if="$slidev.nav.clicks >= 4" src="/images/RayTracing.jpg" alt="Ray tracing in one weekend" />
   </div>
 </div>
 
