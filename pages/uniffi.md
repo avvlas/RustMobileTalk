@@ -112,8 +112,9 @@ val greeting = hello("World")     // "Hello, world!"
 
 # UniFFI — Lifting & Lowering
 
-<img src="/images/UniffiLiftLower.png" class="scale-56 -mt-16" />
-___
+<UniffiLiftLowerDiagram />
+
+---
 
 # UniFFI — объекты в Swift / Kotlin
 
@@ -155,6 +156,60 @@ counter.destroy()
 
 ---
 
+# UniFFI — custom types
+
+Маппинг кастомных типов на нативные типы платформ:
+
+<!--
+```rust {all|1|3-6|7|none}
+uniffi::custom_type!(UtcDateTime, i64, {
+    remote,
+    try_lift: |val| {
+        DateTime::<Utc>::from_timestamp_millis(val)
+            .ok_or(anyhow!("Timestamp {val} out of range"))
+    },
+    lower: |obj| obj.timestamp_millis(),
+});
+```
+-->
+
+```toml 
+# Rust UtcDateTime → Kotlin java.util.Date
+[bindings.kotlin.custom_types.UtcDateTime]
+type_name = "java.util.Date"
+into_custom = "java.util.Date({})"
+from_custom = "{}.time"
+```
+
+---
+
+# UniFFI — callback-интерфейсы
+
+Вызов платформенного кода из Rust:
+
+```rust {all|none}
+// Rust
+#[uniffi::export(callback_interface)]
+pub trait Logger {
+    fn log(&self, level: String, message: String);
+}
+
+#[uniffi::export]
+fn do_work(logger: Box<dyn Logger>) { ... }
+```
+
+```swift {none|all}
+// Swift
+class SwiftLogger: Logger {
+    func log(level: String, message: String) {
+        print("[\(level)] \(message)")
+    }
+}
+doWork(logger: SwiftLogger())
+```
+
+---
+
 # UniFFI — async функции
 
 ```rust
@@ -162,7 +217,8 @@ counter.destroy()
 async fn fetch_data(url: String) -> Result<String, AppError> { ... }
 ```
 
-<div class="grid grid-cols-2 gap-4 mt-4">
+<div class="grid grid-rows-2 gap-4 mt-4">
+<v-clicks>
 <div>
 
 **Swift:**
@@ -180,64 +236,8 @@ val data = fetchData("https://...")  // suspend fun
 ```
 
 </div>
-</div>
-
-`async fn` → Swift `async/await`, Kotlin `suspend fun`
-
----
-
-# UniFFI — callback-интерфейсы
-
-Вызов платформенного кода из Rust:
-
-<v-clicks>
-
-```rust
-#[uniffi::export(callback_interface)]
-pub trait Logger {
-    fn log(&self, level: String, message: String);
-}
-
-#[uniffi::export]
-fn do_work(logger: Box<dyn Logger>) { ... }
-```
-
-```swift
-// Swift
-class SwiftLogger: Logger {
-    func log(level: String, message: String) {
-        print("[\(level)] \(message)")
-    }
-}
-doWork(logger: SwiftLogger())
-```
-
 </v-clicks>
-
----
-
-# UniFFI — custom types
-
-Маппинг кастомных типов на нативные типы платформ:
-
-<!--```rust {all|1|3-6|7|none}
-uniffi::custom_type!(UtcDateTime, i64, {
-    remote,
-    try_lift: |val| {
-        DateTime::<Utc>::from_timestamp_millis(val)
-            .ok_or(anyhow!("Timestamp {val} out of range"))
-    },
-    lower: |obj| obj.timestamp_millis(),
-});
-```-->
-
-```toml {none|all}
-# Rust UtcDateTime → Kotlin java.util.Date
-[bindings.kotlin.custom_types.UtcDateTime]
-type_name = "java.util.Date"
-into_custom = "java.util.Date({})"
-from_custom = "{}.time"
-```
+</div>
 
 ---
 
@@ -246,30 +246,31 @@ from_custom = "{}.time"
 <div class="grid grid-cols-2 gap-8">
 <div>
 
-**Плюсы:**
+<v-click>
 
-<v-clicks>
+**Плюсы:**
 
 - Простая интеграция — минимум boilerplate
 - Поддержка async/await из коробки
 - Callback-интерфейсы для вызова платформенного кода
 - Поддержка объектов, enum, ошибок
 
-</v-clicks>
+</v-click>
 
 </div>
 <div>
 
-**Минусы:**
+<v-click>
 
-<v-clicks>
+**Минусы:**
 
 - Нет generics — нужно конкретизировать типы
 - Нет интеграции с GC JVM — нужен `.destroy()` / `.use {}`
 - Overhead от сериализации через FFI-границу
 - Ручная поддержка для сложных типов данных
+- Нет поддержки WASM
 
-</v-clicks>
+</v-click>
 
 </div>
 </div>

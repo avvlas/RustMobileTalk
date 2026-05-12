@@ -24,12 +24,6 @@ const imageSources = {
             href: "https://mozilla.github.io/uniffi-rs/latest/",
         },
     ],
-    28: [
-        {
-            label: "UniFFI: lifting & lowering",
-            href: "https://mozilla.github.io/uniffi-rs/latest/internals/lifting_and_lowering.html",
-        },
-    ],
     34: [
         {
             label: "Crux overview",
@@ -93,7 +87,9 @@ const imageSources = {
 
 <template>
     <div v-if="imageSources[$nav.currentSlideNo]?.length" class="image-sources">
-        <span v-if="![37, 38].includes($nav.currentSlideNo)" class="prefix">Источник:</span>
+        <span v-if="![37, 38].includes($nav.currentSlideNo)" class="prefix"
+            >Источник:</span
+        >
         <span
             v-for="source in imageSources[$nav.currentSlideNo]"
             :key="source.href"

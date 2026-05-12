@@ -98,7 +98,7 @@ layout: section
 
 # Crux — Android пример
 
-<img src="/images/CruxAndroidExample.png" class="scale-75" />
+<img src="/images/CruxAndroidExample.png" class="scale-75 -mt-10" />
 
 ---
 
@@ -131,7 +131,7 @@ layout: section
 
 ---
 
-# Crux — текущий стейт
+# Crux
 
 <div class="grid grid-cols-2 gap-8">
 <div>
