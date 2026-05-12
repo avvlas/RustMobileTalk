@@ -6,11 +6,13 @@
 - Android-разработчик в Яндексе
 - "Записки Инженера" - [@avvlased](https://t.me/avvlased)
 
-<img
-  src="/images/TelegramQR.png"
-  alt="Telegram QR"
-  class="mt-8 h-36 bg-white p-2 shadow-m"
-/>
+<a href="https://t.me/avvlased" target="_blank" rel="noopener noreferrer" aria-label="Open Telegram channel @avvlased">
+  <img
+    src="/images/TelegramQR.png"
+    alt="Telegram QR"
+    class="mt-8 h-36 bg-white p-2 shadow-m"
+  />
+</a>
 
 </div>
 <div class="flex justify-center -mt-5">

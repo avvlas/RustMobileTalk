@@ -180,8 +180,9 @@ function assetUrl(path) {
     if (!path) return "";
     if (/^(https?:)?\/\//.test(path) || path.startsWith("data:")) return path;
 
-    const base = import.meta.env.BASE_URL || "/";
-    return `${base.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+    const imageName = path.replace(/^\/+/, "").replace(/^images\//, "");
+    const chunkUrl = new URL(import.meta.url);
+    return new URL(`../images/${imageName}`, chunkUrl).href;
 }
 
 function isActive() {
