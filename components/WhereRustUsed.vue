@@ -249,7 +249,7 @@ const categories = [
         id: "mobile",
         label: "Mobile Development",
         items: [
-            { id: "elementx", label: "ElementX" },
+            { id: "elementx", label: "ElementX/Matrix" },
             { id: "protonpass", label: "Proton Suite" },
             { id: "firefox_mobile", label: "Firefox" },
         ],

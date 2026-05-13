@@ -40,7 +40,7 @@ layout: section
 <div class = "grid grid-cols-2 gap-8">
 <div>
 
-```rust {all|3-5|7-15|all}
+```rust
 use dioxus::prelude::*;
 
 fn main() {

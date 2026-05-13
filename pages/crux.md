@@ -67,7 +67,7 @@ layout: section
 
 Двойной подход к FFI:
 
-1. **UniFFI** — механизм вызова функций через FFI
+1. **UniFFI** — база механизма
 2. **Кастомный typegen (serde/facet)** — генерация типов данных
 
 <v-click>
@@ -131,7 +131,7 @@ layout: section
 
 ---
 
-# Crux
+# Crux — выводы
 
 <div class="grid grid-cols-2 gap-8">
 <div>

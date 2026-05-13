@@ -116,12 +116,8 @@ val greeting = hello("World")     // "Hello, world!"
 
 ---
 
-# UniFFI — объекты в Swift / Kotlin
+# UniFFI — объекты в Swift 
 
-<div class="grid grid-cols-2 gap-4">
-<div>
-
-**Swift:**
 ```swift
 let counter = Counter(initial: 0)
 counter.increment() // 1
@@ -129,10 +125,13 @@ counter.increment() // 2
 print(counter.getValue()) // 2
 ```
 
-</div>
-<div>
+Объект живёт на стороне Rust, управляется через `Arc`
 
-**Kotlin:**
+
+---
+
+# UniFFI — объекты в Kotlin
+
 ```kotlin
 val counter = Counter(0)
 counter.increment() // 1
@@ -143,16 +142,7 @@ println(counter.getValue()) // 2
 counter.destroy()
 ```
 
-</div>
-</div>
-
-<div class="mt-4 text-sm">
-
-- Объект живёт на стороне Rust, управляется через `Arc`
-- В Kotlin нужно вызывать `.destroy()` (или `.use {}`) — нет автоматической интеграции с GC
-- В Swift работает через ARC автоматически
-
-</div>
+Нет интеграции с GC JVM – В Kotlin нужно вызывать `.destroy()` (или `.use {}`).
 
 ---
 
@@ -202,7 +192,7 @@ fn do_work(logger: Box<dyn Logger>) { ... }
 // Swift
 class SwiftLogger: Logger {
     func log(level: String, message: String) {
-        print("[\(level)] \(message)")
+        print("[\(level)] \(mess/Matrixage)")
     }
 }
 doWork(logger: SwiftLogger())

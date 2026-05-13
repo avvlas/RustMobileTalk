@@ -85,7 +85,7 @@ const imageSources = {
 
 <template>
     <div v-if="imageSources[$nav.currentSlideNo]?.length" class="image-sources">
-        <span v-if="![37, 38].includes($nav.currentSlideNo)" class="prefix"
+        <span v-if="![38, 39].includes($nav.currentSlideNo)" class="prefix"
             >Источник:</span
         >
         <span
