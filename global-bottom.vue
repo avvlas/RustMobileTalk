@@ -28,12 +28,6 @@ const imageSources = {
             href: "https://mozilla.github.io/uniffi-rs/latest/",
         },
     ],
-    35: [
-        {
-            label: "Crux overview",
-            href: "https://redbadger.github.io/crux/",
-        },
-    ],
     36: [
         {
             label: "Crux overview",
@@ -48,6 +42,12 @@ const imageSources = {
     ],
     38: [
         {
+            label: "Crux overview",
+            href: "https://redbadger.github.io/crux/",
+        },
+    ],
+    39: [
+        {
             label: "Facet-generate pull #48",
             href: "https://github.com/redbadger/facet-generate/pull/48",
         },
@@ -56,25 +56,25 @@ const imageSources = {
             href: "https://github.com/zefchain/serde-reflection/pull/86",
         },
     ],
-    39: [
+    40: [
         {
             label: "Crux pull #485",
             href: "https://github.com/redbadger/crux/pull/485",
         },
     ],
-    40: [
+    41: [
         {
             label: "Photoroom",
             href: "https://www.photoroom.com/",
         },
     ],
-    41: [
+    42: [
         {
             label: "Proton",
             href: "https://proton.me/",
         },
     ],
-    45: [
+    46: [
         {
             label: "Dioxus Labs",
             href: "https://dioxuslabs.com/",

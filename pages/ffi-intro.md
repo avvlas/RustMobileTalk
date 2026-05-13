@@ -101,7 +101,7 @@ use jni::JNIEnv;
 use jni::objects::JClass;
 
 #[no_mangle]
-pub extern "system" fn
+pub extern "C" fn
   Java_com_example_RustLib_add(
     _env: JNIEnv,
     _class: JClass,
